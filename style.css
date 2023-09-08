@@ -20,8 +20,7 @@
 }
 
 .container1 {
-    display: block;
-    
+    display: block; 
 }
 
 .container1 img {
@@ -35,4 +34,13 @@
 
 .container3 img {
     width: 33.33%;
+}
+
+.container4 {
+    display: flex;
+    margin: 0 auto;
+}
+
+.container4 img {
+    width: 25%;
 }
