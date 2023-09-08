@@ -4,12 +4,9 @@
     box-sizing: border-box;
     font-size: 65.43%;
     background-color: black;
+    vertical-align: bottom;
 }
 
-body {
-    padding: 0;
-    margin: 0;
-}
 .wrapper {
     width: 100%;
 }
@@ -24,6 +21,7 @@ body {
 
 .container2 {
     display: block;
+    
 }
 
 .container2 img {
