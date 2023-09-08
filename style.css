@@ -1,0 +1,23 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-size: 65.43%;
+}
+
+.container {
+    width: 100%;
+    border: 2px solid red;
+}
+
+.container-item {
+    display: flex;
+}
+
+.container-item img {
+    width: 50%;
+}
+
+.container-item video {
+    width: 50%;
+}
