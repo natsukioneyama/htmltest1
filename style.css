@@ -6,23 +6,22 @@
     background-color: black;
 }
 
-.container {
+.wrapper {
     width: 100%;
 }
 
-.container-item1 {
+.container1 {
     display: flex;
 }
 
-.container-item1 img {
+.container1 img {
     width: 50%;
 }
 
-.container-item2 {
+.container2 {
     display: block;
-    width: 100%;
 }
 
-.container-item2 img {
+.container2 img {
     width: 100%;
 }
