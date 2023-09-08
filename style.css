@@ -11,19 +11,28 @@
     width: 100%;
 }
 
-.container1 {
+.container2 {
     display: flex;
 }
 
-.container1 img {
+.container2 img {
     width: 50%;
 }
 
-.container2 {
+.container1 {
     display: block;
     
 }
 
-.container2 img {
+.container1 img {
     width: 100%;
+}
+
+.container3 {
+    display: flex;
+    margin: 0 auto;
+}
+
+.container3 img {
+    width: 33.3%;
 }
