@@ -40,6 +40,10 @@
     width: 33.33%;
 }
 
+.container3 video {
+    width: 33.33%;
+}
+
 .container4 {
     display: flex;
     margin: 0 auto;
