@@ -17,7 +17,6 @@ body {
 }
 
 .container2 {
-    display: flex;
     margin: 0 auto;
 }
 
@@ -25,12 +24,22 @@ body {
  width: 50%;
 }
 
-@media (max-width:426px) {
+.container2 img {
+width: 50%;
+}
+
+@media (min-width:431px) {
     .container2 {
-        flex: block;
+        margin: 0 auto;
+        display: flex;
     }
 
     .container2 video {
-        width: 100%;
+        width: 50%;
+    }
+
+    .container2 img {
+        width: 50%;
+       
     }
 }
