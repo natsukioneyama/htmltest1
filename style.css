@@ -18,13 +18,18 @@ body {
 
 .container2 {
     display: flex;
+    margin: 0 auto;
 }
 
 .container2 video {
  width: 50%;
 }
 
-@media (max-width:640px) {
+@media (max-width:426px) {
+    .container2 {
+        flex: block;
+    }
+
     .container2 video {
         width: 100%;
     }
