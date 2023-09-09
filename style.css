@@ -2,53 +2,30 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
-    font-size: 65.43%;
-    background-color: black;
-    vertical-align: bottom;
+    font-size: 100%;
 }
+
+body {
+ -webkit-text-size-adjust: 100%;
+}
+
 
 .wrapper {
     width: 100%;
+    padding: 0;
+    margin: 0;
 }
 
 .container2 {
     display: flex;
 }
 
-.container2 img {
-    width: 50%;
-}
-
 .container2 video {
-    width: 50%;
+ width: 50%;
 }
 
-.container1 {
-    display: block; 
-}
-
-.container1 img {
-    width: 100%;
-}
-
-.container3 {
-    display: flex;
-    margin: 0 auto;
-}
-
-.container3 img {
-    width: 33.33%;
-}
-
-.container3 video {
-    width: 33.33%;
-}
-
-.container4 {
-    display: flex;
-    margin: 0 auto;
-}
-
-.container4 img {
-    width: 25%;
+@media (max-width:640px) {
+    .container2 video {
+        width: 100%;
+    }
 }
