@@ -79,7 +79,7 @@ body, a, div {
 .hamburger .hamburger-text {
   margin-right: 5px;
   font-size: 0.7rem;
-  color: rgb(198, 198, 198);
+  color: black;
 }
 
 .hamburger div {
