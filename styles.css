@@ -147,7 +147,7 @@ body, a, div {
 @media screen and (max-width: 768px) {
    
   .gallery {
-    margin: 20px 10px;         /* 上下20px、左右10px */
+    margin: 40px 10px 20px 10px;         /* 上下20px、左右10px */
     width: calc(100% - 20px);    /* 全幅から左右余白を引く */
   }
 
