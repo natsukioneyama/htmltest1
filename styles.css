@@ -159,6 +159,15 @@ body {
   justify-content: center;
 }
 
+/* 画像と動画のサイズ調整 */
+.slide-container img,
+.slide-container video {
+  max-width: 100%;
+  max-height: 70vh;
+  object-fit: contain; /* 🔥 画面いっぱいに拡大し、余白をなくす */
+  display: block;
+  margin: 0 auto; /* 🔥 画像・動画を中央配置 */
+}
 
 #cursor-text {
   position: absolute;
@@ -168,16 +177,6 @@ body {
   color: white;
   font-weight: bold;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* 文字が見やすくなる */
-}
-
-/* 画像と動画のサイズ調整 */
-.slide-container img,
-.slide-container video {
-  max-width: 100%;
-  max-height: 70vh;
-  object-fit: contain; /* 🔥 画面いっぱいに拡大し、余白をなくす */
-  display: block;
-  margin: 0 auto; /* 🔥 画像・動画を中央配置 */
 }
 
 .close-btn {
