@@ -1,0 +1,469 @@
+/* 全体のリセット */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+   
+body {
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 1rem;
+  background: #fff;
+}   
+          
+/* ヘッダー */
+.header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 50px;
+  background: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  z-index: 3000;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.header .menu-toggle {
+  font-weight: bold;
+  font-size: 1.5em;
+  font-family: "Arial", "Helvetica", sans-serif;
+}
+
+
+.logo {
+  font-size: 1.3rem;
+  font-family: 'Times New Roman', Times, serif;
+  font-weight: normal;
+  margin-left: 5px;
+}
+
+.menu-toggle {
+  cursor: pointer;
+  font-size: 20px;
+  padding-right: 10px;
+}
+
+     
+/* サイドメニュー */
+.side-menu {
+  position: fixed;
+  left: 0;
+  width: 100%;
+  background: white;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+  transform: translateY(-100%);
+  transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+  opacity: 0;
+  visibility: hidden;
+  z-index: 2800;
+ 
+}
+
+
+.side-menu.open {
+  transform: translateY(0) !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  height: auto !important; /* 高さを自動調整 */
+  padding: 2px; /* メニューが開いたときに適用 */
+}
+
+/* サイドメニューのリンク */
+.side-menu p {
+  text-align: left;
+  font-size: 0.7rem;
+  font-weight: bold;
+  font-family: Arial, serif;
+  margin: 10px 0;
+  margin-left: 30px;
+}
+
+.side-menu a {
+  color: black;
+  text-decoration: none;
+  font-size: 0.7rem;
+  transition: color 0.3s ease-in-out;
+  font-weight: bold; 
+  font-family: Arial, serif;
+  
+}
+
+.side-menu a:hover {
+  color: #898989; /* ホバー時の色を変更（青） */
+}
+
+/* ギャラリー */
+.gallery {
+  margin-top: 50px;
+  width: 100vw;
+  display: block;
+  z-index: 2500;
+}
+
+/* Masonry レイアウト用 */
+.gallery-item {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+
+
+/* 画像と動画のスタイル */
+.gallery-item img, 
+.gallery-item video {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  display: block;
+}
+
+.gallery-container.hidden {
+  display: none; /* 🔥 スライドショー時にギャラリーを非表示 */
+}
+
+
+/* スライドショー */
+.slideshow {
+  position: fixed;
+  top: 0; /* ヘッダーの高さ分を確保 */
+  left: 50%;
+  transform: translateX(-50%); /* 🔥 中央に配置 */
+  width: 100%;
+  height: calc(100vh - 50px); /* 🔥 画面いっぱいにしつつ、ヘッダー分を考慮 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: none;
+  z-index: 1000;
+  overflow: visible;
+}
+
+/* スライドショーが表示されているとき */
+.slideshow.active {
+  display: flex !important;
+  opacity: 1;
+  visibility: visible;
+}
+
+/* スライドのコンテンツ */
+.slide-container {
+  flex-grow: 1; /* 🔥 画像・動画をメインエリアとして拡大 */
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.slide-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80%;
+  max-width: 900px;
+  max-height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
+}
+
+
+/* 画像と動画のサイズ調整 */
+.slide-container img,
+.slide-container video {
+  max-width: 100%;
+  max-height: 70vh;
+  object-fit: contain; /* 🔥 画面いっぱいに拡大し、余白をなくす */
+  display: block;
+  margin: 0 auto; /* 🔥 画像・動画を中央配置 */
+}
+
+
+
+
+/* ✅ クリック領域（左右半分ずつ） */
+.click-area {
+  position: absolute;
+  top: 0;
+  width: 50%; /* ✅ クリックエリアを広げる */
+  height: 100%;
+  z-index: 2000; /* ✅ 他の要素より上に */
+  pointer-events: auto;
+  display: block;
+  /*background-color: rgb(91, 91, 115,0.8);*/
+}
+
+/* ✅ 左半分（前のスライドへ） */
+#left-click {
+  left: 0;
+}
+
+/* ✅ 右半分（次のスライドへ） */
+#right-click {
+  right: 0;
+}
+
+
+
+.close-btn {
+  position: fixed; /* 🔥 画面固定にすることで、スライドショーとは独立 */
+  display: none; /* 🔥 最初は非表示 */
+  top: 55px; /* 🔥 画面の上から20px */
+  right: 20px; /* 🔥 画面の右端から30px */
+  font-size: 3rem; /* ボタンサイズ */
+  color: black;
+  background: none;
+  border: none;
+  cursor: pointer;
+  z-index: 1500; /* 🔥 他の要素よりも確実に前面に */
+}
+
+/* 🔥 スライドショーが表示されているときだけ、クローズボタンを表示 */
+.slideshow.active .close-btn {
+  display: block;
+}
+
+/* キャプションとカウンター */
+.slide-info {
+  display: none; /* 🔥 初期状態では非表示 */
+  opacity: 0;  /* 🔥 フェードイン効果のために透明に */
+  position: absolute; 
+  bottom: 10px;
+  left: 0;
+  width: 100%;
+  height: auto;
+  max-width: 100vw; /* 🔥 画面いっぱいの幅を確保 */
+  color: black;
+  display: flex;
+  flex-direction: column;  /* 🔥 縦並び */
+  align-items: center;  
+  
+}
+
+
+
+
+/* ✅ スライドショーがアクティブな時に表示 */
+.slideshow.active .slide-info {
+  display: flex;  /* 🔥 確実に表示 */
+  opacity: 1;  /* 🔥 フェードイン */
+  visibility: visible;
+}
+
+#caption {
+  padding-top: 5px;
+  font-size: 0.8rem; /* 🔥 ここでサイズを調整 */
+  display: block !important; /* 🔥 確実に表示させる */
+  text-align: right;  /* 🔥 右寄せ */
+  margin-bottom: 5px; /* 🔥 カウンターとの間隔を調整 */
+  opacity: 1 !important; /* 透明にならないように */
+}
+
+#counter {
+  font-size: 0.8rem; /* 🔥 ここでサイズを調整 */
+  display: block;
+  text-align: right;  /* 🔥 右寄せ */
+}
+
+
+
+/* 左右クリックエリア */
+.slide-container::before,
+.slide-container::after {
+  content: ""; /* 疑似要素を有効化 */
+  position: absolute;
+  top: 0;
+  width: 50%;
+  height: 100%;
+  cursor: default;
+  pointer-events: none; /* 🚀 クリックイベントを無効化 */
+}
+
+.slide-container::before { left: 0; }
+.slide-container::after { right: 0; }
+
+/* キャプション（ホバーで表示） */
+.caption {
+  position: absolute;
+  display: flex;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255);
+  justify-content: flex-start;
+  align-items: center;
+  text-align: left;
+  padding-left: 5%;
+  padding-top: 5%;
+  font-size: 1.3rem;
+  transition: left 0.3s ease-in-out;
+}
+  
+/* ✅ PC では hover で表示 */
+@media (hover: hover) {
+  .gallery-item:hover .caption {
+      display: block;
+      opacity: 1;
+  }
+}
+
+/* ✅ スマホ・タブレットではタップで表示 */
+@media (hover: none) {
+  .caption.visible {
+      display: block;
+      opacity: 1;
+  }
+}
+
+
+
+.gallery-item:hover .caption {
+  left: 0;
+}
+
+.grid-sizer, .gallery-item {
+  width: 25%; /* PC・タブレットで4列 */
+}
+
+
+/* レスポンシブ対応 */
+/*スマホサイズ*/
+@media (max-width: 767px) {
+
+  .grid-sizer, .gallery-item {
+    width: 50%; /* スマホで2列 */
+}
+}
+
+/* ✅ **すべての画面サイズ**（最小サイズ～最大サイズ）の **ポートレートモード** で適用 */
+@media (orientation: portrait) {
+  .slide-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    max-height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .slide-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh; /* スライドショーの高さを画面いっぱいに */
+    position: relative;
+  }
+
+  .slide-info {
+    opacity: 0;  /* 🔥 フェードイン効果のために透明に */
+    position: absolute; 
+    bottom: 10px;
+    left: 0;
+    width: 100%;
+    height: auto;
+    max-width: 100vw; /* 🔥 画面いっぱいの幅を確保 */
+    color: black;
+    display: flex;
+    flex-direction: column;  /* 🔥 縦並び */
+    align-items: center;  
+    z-index: 200 !important;
+    transform: translate(0%,-50%);
+  }
+}
+
+
+/* ✅ **ランドスケープモード** **（スマホサイズ：767pxまで）** で適用 */
+@media (max-width: 767px) and (orientation: landscape) {
+  .slide-content {
+      position: absolute;
+      top: 50px; /* ✅ ヘッダーの高さを考慮して設定 */
+      left: 50%;
+      transform: translateX(-50%);
+      max-width: 90%;
+      max-height: 75vh;
+      object-fit: contain;
+  }
+
+  .slide-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh; /* スライドショーの高さを画面いっぱいに */
+    position: relative;
+  }
+
+  .slide-info {
+    opacity: 0;  /* 🔥 フェードイン効果のために透明に */
+    position: absolute; 
+    bottom: 3px;
+    left: 0;
+    width: 100%;
+    height: auto;
+    max-width: 100vw; /* 🔥 画面いっぱいの幅を確保 */
+    color: black;
+    display: flex;
+    flex-direction: column;  /* 🔥 縦並び */
+    align-items: center;  
+    z-index: 200 !important;
+    transform: translate(0%,-50%);
+  }
+}
+
+
+/* ✅ **ランドスケープモード** **（タブレット以上：768px以上）** で適用 */
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+  .slide-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    max-width: 900px;
+    max-height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .slide-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh; /* スライドショーの高さを画面いっぱいに */
+    position: relative;
+  }
+
+  .slide-info {
+    opacity: 0;  /* 🔥 フェードイン効果のために透明に */
+    position: absolute; 
+    bottom: 3px;
+    left: 0;
+    width: 100%;
+    height: auto;
+    max-width: 100vw; /* 🔥 画面いっぱいの幅を確保 */
+    color: black;
+    display: flex;
+    flex-direction: column;  /* 🔥 縦並び */
+    align-items: center;  
+    z-index: 200 !important;
+    transform: translate(0%,-50%);
+  }
+}
+
+
+
+
+
+
+
