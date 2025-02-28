@@ -313,7 +313,7 @@ body {
   padding-left: 10%;
   padding-top: 5%;
   transition: left 0.3s ease-in-out;
-  font-size: 1.3rem;
+  font-size: 1.5rem;
   font-family: "garamond-premier-pro-display", serif;
   font-weight: 500;
   font-style: italic;
@@ -357,7 +357,10 @@ body {
 
 /* ✅ **すべての画面サイズ**（最小サイズ～最大サイズ）の **ポートレートモード** で適用 */
 @media (orientation: portrait) {
-
+    .caption {
+    font-size: 1.3rem;
+  }
+  
   .slide-content {
     position: absolute;
     top: 50%;
@@ -398,6 +401,10 @@ body {
 
 /* ✅ **ランドスケープモード** **（スマホサイズ：767pxまで）** で適用 */
 @media (max-width: 767px) and (orientation: landscape) {
+   .caption {
+    font-size: 1.3rem;
+  }
+  
   .slide-content {
       position: absolute;
       top: 50px; /* ✅ ヘッダーの高さを考慮して設定 */
@@ -436,6 +443,10 @@ body {
 
 /* ✅ **ランドスケープモード** **（タブレット以上：768px以上）** で適用 */
 @media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+   .caption {
+    font-size: 1.3rem;
+  }
+  
   .slide-content {
     position: absolute;
     top: 50%;
