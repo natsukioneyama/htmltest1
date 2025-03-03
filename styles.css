@@ -288,6 +288,7 @@ body {
   cursor: pointer;
   z-index: 9999;
   display: none; /* ✅ 初期状態では非表示 */
+   -webkit-tap-highlight-color: transparent;
 }
 
 /* 🔥 スライドショーが表示されているときだけ、クローズボタンを表示 */
