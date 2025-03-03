@@ -278,7 +278,7 @@ body {
   background: none;
   border: none;
   position: fixed;
-  bottom: 15px; /* カウンターの真上に配置 */
+  bottom: 30px; /* カウンターの真上に配置 */
   right: 10px; /* 右下 */
   font-size: 10px;
   font-family: "monotype-grotesque", sans-serif;
