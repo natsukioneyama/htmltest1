@@ -207,6 +207,12 @@ document.addEventListener("DOMContentLoaded", function () {
         closeSlideshow();
     });
 
+    closeBtn.addEventListener("touchend", function(event) {
+    event.preventDefault(); // タップ動作を防ぐ
+    closeSlideshow();
+});
+
+
     function nextSlide() {
         currentIndex = (currentIndex + 1) % galleryItems.length;
         console.log("次のスライド: ", currentIndex); // ✅ ここで確認
