@@ -286,7 +286,7 @@ body {
   font-style: normal;
   font-weight: bold;
   cursor: pointer;
-  z-index: 2000;
+  z-index: 9999;
   display: none; /* ✅ 初期状態では非表示 */
 }
 
