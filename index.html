@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Natsuki Oneyama</title>
+  <link rel="stylesheet" href="style.css">             <!-- トップページ全体のCSS -->
+  <link rel="stylesheet" href="style-gallery.css">     <!-- Lightbox用共通CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
+  <script>
+  if (window.innerWidth >= 1024) {
+    window.location.href = "";
+  }
+</script>
+
+</head>
+<body>
+  <header>
+  <div class="name">Natsuki Oneyama, Make-up Artist</div>
+  <div class="representation">Represented By Blend Management</div>
+</header>
+
+<section class="latest-works-section">
+  <h2 class="latest-title">LATEST WORKS</h2>
+</section>
+
+
+  <div class="overview-icon">☷</div>
+
+  <div class="projects">
+    <div class="project" onclick="openLightbox()">
+      <img src="img/sanstitle/001/15.jpg" alt="Vogue Mexico">
+      <div class="project-title">Vogue Mexico</div>
+    </div>
+  </div>
+    <div class="project" onclick="openLightbox()">
+    <img src="img/Untitled_/01/04.jpg" alt="10 Men">
+    <div class="project-title">10 Men</div>
+  </div>
+</div>
+
+  <!-- Lightbox Overlay -->
+  <div class="lightbox-overlay" id="lightbox">
+    <div class="swiper">
+      <div class="swiper-wrapper">
+
+        <div class="swiper-slide">
+         <div class="slide-content">
+           <img src="img/sanstitle/001/06.jpg" alt="Slide 1">
+            <div class="caption">
+               Vogue Mexico<br>
+               Photography: Name<br>
+               Styling: Name
+    </div>
+  </div>
+</div>
+       <div class="swiper-slide">
+         <div class="slide-content">
+           <img src="img/sanstitle/001/06.jpg" alt="Slide 1">
+            <div class="caption">
+               Vogue Mexico<br>
+               Photography: Name<br>
+               Styling: Name
+    </div>
+  </div>
+</div>
+       <div class="swiper-slide">
+         <div class="slide-content">
+           <img src="img/sanstitle/001/06.jpg" alt="Slide 1">
+            <div class="caption">
+               Vogue Mexico<br>
+               Photography: Name<br>
+               Styling: Name
+    </div>
+  </div>
+</div>
+
+  <div class="swiper-slide">
+    <div class="slide-content">
+      <img src="img/sanstitle/002/01.jpg" alt="10 Men Slide">
+      <div class="caption">
+        10 Men<br>
+        Photography: Name<br>
+        Styling: Name
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+
+ <div class="horizontal-line"></div>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
