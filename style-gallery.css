@@ -16,7 +16,10 @@ body.lightbox-open {
   position: fixed;     /* ← モバイルでのグラつき防止 */
   width: 100%;
 }
-
+.lightbox-overlay {
+  touch-action: none;         /* ← タッチによるスクロールを無効に */
+  overscroll-behavior: none; /* ← iOSでの引っ張りスクロール防止 */
+}
 
 /* Swiper本体 */
 .swiper,
