@@ -28,7 +28,7 @@ body.lightbox-open {
   overflow: hidden; /* ← 修正 */
   touch-action: none;
   overscroll-behavior: none;
-  transition: transform 0.4s ease, opacity 0.4s ease;
+  transition: transform 0.7s ease, opacity 0.7s ease;
   transform: scale(0.9);
   opacity: 0;
 }
