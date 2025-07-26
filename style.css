@@ -1,0 +1,55 @@
+/* style.css */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: #ffffff;
+  color: #000000;
+  font-family: sans-serif;
+  padding: 1rem;
+}
+
+header {
+  text-align: center;
+  font-size: 0.8rem;
+  margin-bottom: 1rem;
+  line-height: 1.5;
+  color: gray;
+}
+
+.overview-icon {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.projects {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.project {
+  background: #ffffff;
+  padding: 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.project-title {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-top: 0.5rem;
+  color: black;
+}
+
+.project img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
