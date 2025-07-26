@@ -1,0 +1,64 @@
+/* style-gallery.css */
+
+/* 全体設定 */
+html, body {
+  margin: 0;
+  padding: 0;
+  background: #ffffff;
+  color: #000000;
+  font-family: sans-serif;
+  height: 100%;
+  overflow: hidden;
+}
+
+/* Swiper本体 */
+.swiper,
+.swiper-wrapper {
+  height: 100vh;
+}
+
+/* スライド1枚分（中央揃え） */
+.swiper-slide {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+}
+
+/* 中の画像・動画サイズと整列 */
+.swiper-slide img,
+.swiper-slide video {
+  max-height: 80vh;
+  max-width: 80vw;
+  object-fit: contain;
+  display: block;
+}
+
+.slide-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.slide-content .caption {
+  margin-top: 10px;
+  padding: 0 10px;
+  max-width: 80vw;
+  margin-left: 0;         /* ← 左寄せに変更 */
+  margin-right: auto;     /* ← 右側を押し出して左に寄せる */
+  font-size: clamp(0.6rem, 1vw, 0.7rem);
+  text-align: left;
+  color: #000;
+}
+
+
+/* Lightboxオーバーレイ（白背景） */
+.lightbox-overlay {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  inset: 0;
+  background: white;
+  z-index: 1000;
+  overflow: auto; /* ← ここ重要！ */
+}
