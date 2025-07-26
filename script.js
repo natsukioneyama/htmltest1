@@ -17,10 +17,11 @@ function openLightbox() {
   document.body.style.width = '100%';
 
   swiper.slideTo(0); // ✅ 最初のスライドを表示してから
-  
-    setTimeout(() => {
-    forceSlideCentering();  // ✅ その後に中央揃えを確実に
-  }, 100); // 少し遅延させてレイアウト確定後に再描画 
+
+    // ✅ スライド切替アニメーションが終わったら中央揃え
+  swiper.once('transitionEnd', () => {
+    forceSlideCentering();
+  });
 
   requestAnimationFrame(() => {
     lightbox.classList.add('active'); // アニメーション開始
