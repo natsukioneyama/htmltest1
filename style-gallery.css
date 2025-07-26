@@ -28,7 +28,21 @@ body.lightbox-open {
   overflow: hidden; /* ← 修正 */
   touch-action: none;
   overscroll-behavior: none;
+  transition: transform 0.4s ease, opacity 0.4s ease;
+  transform: scale(0.9);
+  opacity: 0;
 }
+
+.lightbox-overlay.active {
+  transform: scale(1);
+  opacity: 1;
+}
+
+.lightbox-overlay.closing {
+  transform: scale(0.9);
+  opacity: 0;
+}  
+  
  touch-action: none;         /* ← タッチによるスクロールを無効に */
   overscroll-behavior: none; /* ← iOSでの引っ張りスクロール防止 */
 }
