@@ -16,7 +16,11 @@ function openLightbox() {
   document.body.style.top = `-${scrollY}px`;
   document.body.style.width = '100%';
 
-  forceSlideCentering(); // ✅ ここで必ず中央揃えを強制
+  swiper.slideTo(0); // ✅ 最初のスライドを表示してから
+  
+    setTimeout(() => {
+    forceSlideCentering();  // ✅ その後に中央揃えを確実に
+  }, 100); // 少し遅延させてレイアウト確定後に再描画 
 
   requestAnimationFrame(() => {
     lightbox.classList.add('active'); // アニメーション開始
