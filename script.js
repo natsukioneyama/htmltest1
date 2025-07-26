@@ -1,5 +1,3 @@
-// script.js
-
 const lightbox = document.getElementById('lightbox');
 const swiper = new Swiper('.swiper', {
   loop: false,
@@ -8,15 +6,37 @@ const swiper = new Swiper('.swiper', {
   allowTouchMove: true,
 });
 
+let scrollY = 0;
+
 function openLightbox() {
+  scrollY = window.scrollY;
   lightbox.style.display = 'block';
-   document.body.classList.add('lightbox-open'); // ✅ スクロール防止
+  document.body.classList.add('lightbox-open');
+  document.body.style.position = 'fixed';
+  document.body.style.top = `-${scrollY}px`;
+  document.body.style.width = '100%';
 }
 
-// スワイプ以外のクリックで閉じる
+function closeLightbox() {
+  lightbox.style.display = 'none';
+  document.body.classList.remove('lightbox-open');
+  document.body.style.position = '';
+  document.body.style.top = '';
+  window.scrollTo(0, scrollY);
+}
+
+// Lightboxを開く処理（例：.projectクリックなどから呼び出し）
+document.querySelectorAll('.project').forEach(project => {
+  project.addEventListener('click', (e) => {
+    e.preventDefault();
+    openLightbox();
+    swiper.slideTo(0); // 必要なら最初のスライドへ
+  });
+});
+
+// Lightboxを閉じる処理（画像をタップしたとき）
 lightbox.addEventListener('click', (e) => {
   if (e.target.closest('.swiper-slide')) {
-    lightbox.style.display = 'none';
-        document.body.classList.remove('lightbox-open'); // ✅ スクロール解除
+    closeLightbox();
   }
 });
