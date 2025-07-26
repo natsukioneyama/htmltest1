@@ -84,14 +84,4 @@ body.lightbox-open {
 }
 
 
-/* Lightboxオーバーレイ（白背景） */
-.lightbox-overlay {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: fixed;
-  inset: 0;
-  background: white;
-  z-index: 1000;
-  overflow: auto; /* ← ここ重要！ */
-}
+
