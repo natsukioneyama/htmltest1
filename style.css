@@ -1,0 +1,160 @@
+:root {
+  --vh: 1vh;
+}
+
+body {
+  margin: 0;
+  font-family: sans-serif;
+  background: #fff;
+}
+
+body.lightbox-open {
+  position: fixed;
+  width: 100%;
+  overflow: hidden;
+  touch-action: none;
+  overscroll-behavior: none;
+}
+
+header {
+  text-align: center;
+  margin-top: 100px;
+}
+
+.subheading {
+  font-size: 0.8rem;
+  color: #747373d5;
+}
+
+.section-title {
+  padding-top: 50px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  padding-left: 20px; 
+  text-decoration: underline;
+}
+
+.divider {
+  border: none;
+  border-top: 1px solid black;
+  width: calc(100% - 40px);
+  margin: 1.5rem auto;
+}
+
+
+.projects {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.project {
+  margin: 10px 0;
+  cursor: pointer;
+}
+
+.project img {
+  width: 90vw;
+  max-width: 400px;
+}
+
+.project-title {
+  font-size: 0.8rem;
+  padding: 1px;
+  color: rgba(22, 22, 22, 0.861);
+}
+
+/* Lightbox */
+.lightbox-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: #1b1b1bec;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  flex-direction: column;
+  overflow: hidden;
+  height: calc(var(--vh, 1vh) * 100);
+}
+
+.swiper {
+  width: 90vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  overflow: visible;
+  height: calc(var(--vh, 1vh) * 100);
+}
+
+.swiper-slide {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.swiper-slide img {
+  max-width: 80vw;
+  max-height: 80vh;
+  object-fit: contain;
+}
+
+.slide-content {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  flex-direction: column;
+}
+
+.swiper-button-next::after,
+.swiper-button-prev::after {
+  font-size: 20px !important;
+  color: #fff !important;
+  text-shadow: none !important;
+  opacity: 1 !important;
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+  position: fixed !important;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1001;
+  color: white;
+}
+
+.swiper-button-next {
+  right: 10px !important ; /* デフォルトは10px */
+}
+
+.swiper-button-prev {
+  left: 10px !important ;
+}
+
+
+.caption {
+  text-align: left;
+  font-size: clamp(0.6rem, 1vw, 0.75rem);
+  line-height: 1.4;
+  color: #ffffff;
+  max-width: 80%;
+  padding-top: 5px;
+}
+
+@media screen and (orientation: portrait) {
+  .swiper-button-prev,
+  .swiper-button-next {
+    display: none !important;
+  }
+}
+
+
