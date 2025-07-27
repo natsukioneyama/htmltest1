@@ -1,0 +1,22 @@
+:root {
+  --vh: 1vh;
+}
+
+.lightbox-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: calc(var(--vh, 1vh) * 100);
+  width: 100%;
+  background: #fff;
+  z-index: 1000;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.swiper {
+  width: 100%;
+  height: calc(var(--vh, 1vh) * 100);
+}
