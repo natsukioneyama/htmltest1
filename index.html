@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Portfolio</title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css"/>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css"/>
+</head>
+<body>
+
+<!-- Overviewモード切り替えボタン -->
+<button id="toggleOverview">Overview</button>
+
+<!-- トップページ プロジェクトサムネイル（各プロジェクト1枚のみ） -->
+<div id="projects">
+  <div class="project" data-project="0">
+    <a href="#"><img src="thumbs/untitled/01/11.jpg" alt="Untitled" /></a>
+  </div>
+  <div class="project" data-project="1">
+    <a href="#"><img src="thumbs/sanstitle/001/05.jpg" alt="Sans Title" /></a>
+  </div>
+</div>
+
+<!-- overviewモードギャラリー（Justified Galleryで整列表示） -->
+<div id="overviewGallery" style="display: none;">
+  <a href="img/untitled/01/11.jpg" data-caption="Photographer: Lucie Rox<br>Stylist: Name Here"><img src="thumbs/untitled/01/11.jpg" alt=""/></a>
+  <a href="img/untitled/01/12.jpg"><img src="thumbs/untitled/01/12.jpg" alt=""/></a>
+  <a href="img/untitled/01/13.jpg"><img src="thumbs/untitled/01/13.jpg" alt=""/></a>
+  <a href="img/untitled/01/14.jpg"><img src="thumbs/untitled/01/14.jpg" alt=""/></a>
+
+  <a href="img/sanstitle/001/05.jpg"><img src="thumbs/sanstitle/001/05.jpg" alt=""/></a>
+  <a href="img/sanstitle/001/06.jpg"><img src="thumbs/sanstitle/001/06.jpg" alt=""/></a>
+</div>
+
+<!-- Lightbox (Swiper) -->
+<div class="lightbox" id="lightbox">
+  <div class="swiper">
+    <div class="swiper-wrapper" id="swiper-wrapper"></div>
+    <div class="swiper-button-next"></div>
+    <div class="swiper-button-prev"></div>
+  </div>
+</div>
+
+<!-- Scripts -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
+
+
