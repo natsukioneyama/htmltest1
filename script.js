@@ -14,8 +14,12 @@ const projectGalleries = [
     { src: "img/untitled/01/14.jpg", caption: "" }
   ],
   [ // Project 1: SANS TITLE
-    "img/sanstitle/001/05.jpg",
-    "img/sanstitle/001/06.jpg"
+    { src: "img/sanstitle/001/05.jpg", caption: "" },
+    { src: "img/sanstitle/001/06.jpg", caption: "" }
+  ]
+   [ 
+     { src: "img/beautypapers/01/07.jpg", caption: `<p>Photography Lucie Rox</p><p>Stylist Someone Name</p>`},
+     { src: "img/beautypapers/01/08.jpg", caption: `<p>Photography Lucie Rox</p><p>Stylist Someone Name</p>`}
   ]
 ];
 
@@ -84,7 +88,7 @@ function openLightbox(imageArray, startIndex) {
     `;
   });
 
-  const scrollPosition = window.scrollY;
+ const scrollPosition = window.scrollY || window.pageYOffset;
   document.body.classList.add("lightbox-open");
   document.body.style.position = "fixed";
   document.body.style.top = `-${scrollPosition}px`;
@@ -92,7 +96,7 @@ function openLightbox(imageArray, startIndex) {
   document.body.style.right = "0";
   document.body.style.overflow = "hidden";
   document.body.style.width = "100%";
-  document.body.dataset.scrollPosition = scrollPosition;
+  document.body.dataset.scrollPosition = scrollPosition.toString();
 
   if (swiper) swiper.destroy();
   swiper = new Swiper('.swiper', {
@@ -118,7 +122,6 @@ function openLightbox(imageArray, startIndex) {
 
 
 function closeLightbox() {
-  // スクロール位置を復元
   const savedScroll = parseInt(document.body.dataset.scrollPosition || "0", 10);
   document.body.classList.remove("lightbox-open");
   document.body.style.position = "";
@@ -127,10 +130,12 @@ function closeLightbox() {
   document.body.style.right = "";
   document.body.style.overflow = "";
   document.body.style.width = "";
-  window.scrollTo(0, savedScroll);
+  delete document.body.dataset.scrollPosition;
 
-  // Lightbox非表示
-  lightbox.classList.remove("active");
+  // ✅ 少し遅延させて scroll を戻す（iOS含め反映しやすくなる）
+  setTimeout(() => {
+    window.scrollTo({ top: savedScroll, behavior: "instant" });
+  }, 0);
 }
 
 
@@ -144,9 +149,9 @@ lightbox.addEventListener('click', (e) => {
 
   if (!isClickOnImage && !isClickOnNav) {
     lightbox.classList.remove('active');
-    document.body.style.overflow = "";
 
     if (swiper) swiper.destroy();
+    closeLightbox(); // ← 必ず呼び出す
   }
 });
 
