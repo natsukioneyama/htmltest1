@@ -25,8 +25,7 @@ const projectGalleries = [
        { src: "img/untitled/01/11.jpg", caption: "" },
         { src: "img/untitled/01/07.jpg", caption: "" },
          { src: "img/untitled/01/09.jpg", caption: "" }
-  ],
-  [ // Project 1: SANS TITLE
+
     { src: "img/beautypapers/01/07.jpg", caption: '<p>Photographer: Jeremie Monnier</p>' },
      { src: "img/beautypapers/01/20.jpg", caption: "" },
       { src: "img/beautypapers/01/16.jpg", caption: "" },
@@ -34,18 +33,15 @@ const projectGalleries = [
         { src: "img/beautypapers/01/12.jpg", caption: "" },
          { src: "img/beautypapers/01/06.jpg", caption: "" },
           { src: "img/beautypapers/01/03.jpg", caption: "" }
-  ],
-   [ 
+ 
      { src: "thumbs/voguemexico/01/IMG_6345.jpg", caption: `<p>Photographer: Ward Ivan Rafik</p>`}
-  ],
-     [ 
+
      { src: "img/sanstitle/001/13.jpg", caption: `<p>Photographer: Tess Petronio</p><br><p>Styling: Suzanne Koller</p>`},
       { src: "img/sanstitle/001/10.jpg", caption: ``},
        { src: "img/sanstitle/001/05.jpg", caption: ``},
         { src: "img/sanstitle/001/04.jpg", caption: ``},
          { src: "img/sanstitle/001/02.jpg", caption: ``}
-  ],
-       [ 
+
      { src: "img/replicaman/ss24/22.jpg", caption: `<p>Photographer: Pavel Golik</p><br><p>Styling: Andrej Skok</p>`},
       { src: "img/replicaman/ss24/21.jpg", caption: ``},
        { src: "img/replicaman/ss24/18.jpg", caption: ``},
@@ -53,8 +49,7 @@ const projectGalleries = [
            { src: "img/replicaman/ss24/03.jpg", caption: ``},
              { src: "img/replicaman/ss24/11.jpg", caption: ``}
      
-  ],
-   [ 
+
      { src: "img/thegreatest/symmetryissue_/02.jpg", caption: `<p>Photographer: Hein Gijsbers</p>`},
       { src: "img/thegreatest/symmetryissue_/31.jpg", caption: ``},
        { src: "img/thegreatest/symmetryissue_/18.jpg", caption: ``},
@@ -62,23 +57,20 @@ const projectGalleries = [
            { src: "img/thegreatest/symmetryissue_/17.jpg", caption: ``},
              { src: "img/thegreatest/symmetryissue_/05.jpg", caption: ``},
               { src: "img/thegreatest/symmetryissue_/04.jpg", caption: ``}
-  ],
-  [ 
+ 
   { src: "video/numeroswitzerlandhomme/NShomme01.mp4", type: "video",caption: "<p> Numéro Switzerland Homme</p>" }
-],
-   [ 
+ 
      { src: "img//lampoon/muscleissue/08.jpg", caption: `<p>Photographer: Manon Clavelier</p>`},
       { src: "img/lampoon/muscleissue/18.jpg", caption: ``},
        { src: "img/lampoon/muscleissue/07.jpg", caption: ``},
          { src: "img/lampoon/muscleissue/03.jpg", caption: ``},
            { src: "img/lampoon/muscleissue/06.jpg", caption: ``},
              { src: "img/lampoon/muscleissue/05.jpg", caption: ``}
-  ],
-     [ 
+  
+      
      { src: "img/numeroswitzerland/issue01-2/09.jpg", caption: `<p>Photographer: Antoine & Charlie</p>`},
       { src: "img/numeroswitzerland/issue01-2/07.jpg", caption: ``}
-  ],
-     [ 
+  
      { src: "img/beauty/01/07.jpg", caption: ``},
       { src: "img/beauty/01/08.jpg", caption: ``},
        { src: "img/beauty/01/06.jpg", caption: ``},
@@ -87,8 +79,7 @@ const projectGalleries = [
           { src: "img/beauty/01/02.jpg", caption: ``},
            { src: "img/beauty/01/03.jpg", caption: ``},
             { src: "img/beauty/01/01.jpg", caption: ``}
-  ],
-       [ 
+  
      { src: "img/10menmagazine/issue58/15.jpg", caption: `<p>Photographer: Allen Hamitouche</p>`},
       { src: "img/10menmagazine/issue58/22.jpg", caption: ``},
       { src: "img/10menmagazine/issue58/12.jpg", caption: ``},
@@ -98,17 +89,14 @@ const projectGalleries = [
       { src: "img/10menmagazine/issue58/04.jpg", caption: ``},
       { src: "img/10menmagazine/issue58/05.jpg", caption: ``},
       { src: "img/10menmagazine/issue58/03.jpg", caption: ``},
-  ],
-      [
+
       { src: "img/dapperdan/25/07.jpg", caption: `<p>Photographer: Joe Lai</p>`},
       { src: "img/dapperdan/25/05.jpg", caption: ``},
       { src: "img/dapperdan/25/03.jpg", caption: ``},
       { src: "img/dapperdan/25/02.jpg", caption: ``}
-  ],    
-    [ 
-  { src: "video/beauty/01/01.mp4", type: "video",caption: "<p>Dirctor: Beltran Gonzalez</p>" }
-],
-   [
+  
+  　{ src: "video/beauty/01/01.mp4", type: "video",caption: "<p>Dirctor: Beltran Gonzalez</p>" }
+
     { src: "img/crash/103/11.jpg", caption: `<p>Photographer: Manuel Obadia-Wills</p>`},
     { src: "img/crash/103/09.jpg", caption: ``},
     { src: "img/crash/103/07.jpg", caption: ``},
@@ -117,11 +105,9 @@ const projectGalleries = [
     { src: "img/crash/103/05.jpg", caption: ``},
     { src: "img/crash/103/03.jpg", caption: ``},
     { src: "img/crash/103/04.jpg", caption: ``},  
-],
-    [ 
+
     { src: "video/nowness/massimilianobombas01.mp4", type: "video",caption: "<p>Director: Massimiliano Bomba</p>" }
-],
-    [
+
     { src: "img/nicotine/issue07/01.jpg", caption: `<p>Photographer: Fernando Uceda</p>`},
     { src: "img/nicotine/issue07/03.jpg", caption: ``},
     { src: "img/nicotine/issue07/02.jpg", caption: ``},
@@ -129,14 +115,11 @@ const projectGalleries = [
     { src: "img/nicotine/issue07/13.jpg", caption: ``},
     { src: "img/nicotine/issue07/14.jpg", caption: ``},
     { src: "img/nicotine/issue07/09.jpg", caption: ``},
-], 
-  [ 
+ 
     { src: "video/givenchyss23/gv01.mp4", type: "video",caption: "<p></p>" },
     { src: "video/givenchyss23/gv02.mp4", type: "video",caption: "<p></p>" },
     { src: "video/givenchyss23/gv03.mp4", type: "video",caption: "<p></p>" }
-  ],
-
-
+  
 ];
 
 
