@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Masonry Overview + Lightbox Header</title>
+  <style>
+    /* ---------- Base ---------- */
+    :root { --maxw:1100px; --gap:10px; }
+    * { box-sizing: border-box; }
+    html,body { height:100%; }
+    body { margin:0;   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Hiragino Kaku Gothic ProN", "Noto Sans JP", "Yu Gothic", Arial, sans-serif; color:#0a0a0a; }
+     
+    @supports (-webkit-appearance: none) and (not (-ms-ime-align: auto)) {
+  body {
+    font-family: "Helvetica Neue", Helvetica, Arial,
+                 "Hiragino Kaku Gothic ProN", "Noto Sans JP", "Yu Gothic",
+                 sans-serif;
+  }
+}
+    a { color: inherit; text-decoration: none; }
+    .container { max-width: var(--maxw); margin: 0 auto; padding: 24px; }
+
+    /* ---------- Header (top of page) ---------- */
+    .hero { text-align:center; padding: 50px 0 80px; }
+    .hero h1 { font-size: 1rem; font-weight: 700; margin: 0 0 1px;  }
+    .hero p { font-size: 0.9rem; font-weight: 700; margin: 0; }
+     
+    .hero a {color: inherit; text-decoration: none;}
+
+    .hero a:hover {text-decoration: none; }
+
+    .section-title {
+      display:flex; align-items:center; gap:16px; margin: 32px 0 16px;
+      font-weight:700; letter-spacing: 0.04em;
+    }
+    .section-title::after { content:""; flex:1; height:1px; background:#0a0a0a; }
+
+    /* ---------- Contacts ---------- */
+    .contacts {
+      display:flex; justify-content:center; gap:28px;
+      border-top:1px solid #0a0a0a;
+      padding: 20px 8px; font-weight:500; font-size: 0.8rem;
+    }
+    .contacts a { opacity:1; }
+    .contacts a:hover { opacity:0.5 ; text-decoration: none; }
+
+    /* ---------- Masonry Overview ---------- */
+    .masonry { column-count: 3; column-gap: var(--gap); padding-bottom: 50px; }
+    .masonry-item { display:block; break-inside: avoid; margin-bottom: var(--gap); }
+    .masonry-item img, .masonry-item video { width:100%; height:auto; display:block; background:#ececec; }
+
+    /* ---------- Bio ---------- */
+    .bio {
+      border-top:1px solid #0a0a0a; 
+      padding: 28px 0; line-height:1.8; font-size:0.8rem;
+    }
+
+    .footer-copyright {
+  text-align: center;
+  font-size: 0.6rem;
+  color: #666;
+  padding: 16px 0;
+}
+
+
+    /* ---------- Lightbox ---------- */
+    .lightbox {
+      position: fixed; inset: 0; background: rgba(0,0,0,0.92);
+      display:none; z-index:9999;
+      padding-top: env(safe-area-inset-top);
+    }
+    .lightbox.open { display:block; }
+    .lb-inner { position:relative; width:100%; height:100%; }
+
+    /* Top header bar in lightbox */
+    .lb-header {
+      position: absolute; top:0; left:0; right:0;
+      background: rgba(255,255,255,0.94);
+      display:flex; gap:12px; align-items:flex-start; justify-content:space-between;
+      padding: 10px 16px calc(10px + env(safe-area-inset-top)) 16px;
+      padding-top: calc(10px + env(safe-area-inset-top));
+      border-bottom:1px solid rgba(0,0,0,0.1);
+    }
+    .lb-left { min-width:0; }
+    .lb-title { font-weight:800; font-size:16px; margin-bottom:2px; }
+    .lb-meta { font-size:13px; line-height:1.4; }
+    .lb-right { text-align:right; display:flex; flex-direction:column; gap:6px; }
+    .lb-actions { display:flex; gap:16px; justify-content:flex-end; font-weight:800; font-size:13px; }
+    .lb-actions a, .lb-actions button { color:#000; background:none; border:0; padding:0; cursor:pointer; }
+    .lb-page { font-size:12px; opacity:0.8; }
+
+    /* Stage (make room for header) */
+    .lb-stage {
+    position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(92vw, 820px);      /* 800px上限に合わせた幅（必要なら調整） */
+  display: flex;
+  justify-content: center;      /* 横：中央 */
+  align-items: flex-start;   
+    }
+   
+    /* Lightbox内のメディアは幅800pxを上限に */
+.lb-media {
+    display: block;
+  margin: 0;                    /* 念のため */
+  width: auto;
+  max-width: min(100%, 800px);  /* 幅800px上限（任意で変更可） */
+  height: auto;
+  max-height: 100%;
+}
+
+
+    /* Arrows */
+    .lb-prev, .lb-next {
+   background: none;         /* 背景なし */
+  backdrop-filter: none;    /* ぼかしもなし */
+  color: #a2a2a279;              /* 矢印色（必要に応じて変更可） */
+  border: none;
+  cursor: pointer;
+  font-size: 40px;          /* 矢印の大きさ */
+  width: auto;
+  height: auto;
+  padding: 8px 12px;        /* クリックしやすい余白だけ残す */
+  line-height: 1;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+    }
+    .lb-prev { left:12px; }
+    .lb-next { right:12px; }
+
+
+    .lb-hotspot {
+  position: absolute;
+  top: var(--lb-stage-top, 0); /* JSで設定されるtopに追従 */
+  left: 0;
+  width: 50%;
+  height: var(--lb-stage-height, 100vh); /* JSで設定されるheightに追従 */
+  background: transparent;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  z-index: 2;                /* ステージ上、ヘッダー下 */
+  cursor: pointer;
+}
+.lb-hotspot-right { left: 50%; }
+.lb-hotspot-left  { cursor: w-resize; }
+.lb-hotspot-right { cursor: e-resize; }
+
+/* モバイルで矢印非表示にしててもホットスポットは有効にしてOK。
+   無効にしたいならここで display:none に切替可能 */
+
+
+
+    @media (max-width: 768px) {
+  .lb-prev,
+  .lb-next {
+    display: none !important;
+  }
+}
+
+    @media (max-width: 1024px) { .masonry { column-count: 3; } }
+    @media (max-width: 768px)  {
+      .masonry { column-count: 2; }
+      .contacts { flex-wrap:wrap; gap:16px; }
+      .lb-stage { top:72px; height: calc(92vh - 72px); }
+      .lb-title { font-size:15px; }
+    }
+    @media (max-width:480px) { .container { padding:16px; } }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="hero">
+     <a href="https://blendmanagement.com/paris/makeup/makeup-artists/natsuki-oneyama" target="_blank" rel="noopener">
+  <h1>Natsuki Oneyama, Make-up Artist</h1>
+  <p>Represented by Blend Management</p>
+</a>
+    </div>
+
+  
+    <!-- Masonry Overview (10点サンプル) -->
+    <div id="overview" class="masonry">
+      <!-- data-title / data-meta は Lightboxヘッダーに出ます -->
+      <a class="masonry-item" href="img/untitled/01/11.jpg" data-type="image"
+         data-title="Natsuki Oneyama" data-meta="UNTITLED<br>Photographer: Lucie Rox">
+        <img src="thumbs/untitled/01/11.jpg" alt="">
+      </a>
+
+      <a class="masonry-item" href="img/untitled/01/09.jpg" data-type="image"
+         data-title="Caroline Fenouil" data-meta="Gucci<br>Felix Dol Maillot">
+        <img src="thumbs/untitled/01/09.jpg" alt="">
+      </a>
+
+      <a class="masonry-item" href="img/beautypapers/01/07.jpg" data-type="image"
+         data-title="Balmain" data-meta="Zoe Natale Mannella &amp; Olivier Rousteing">
+        <img src="thumbs/beautypapers/01/07.jpg" alt="">
+      </a>
+
+      <a class="masonry-item" href="video/numeroswitzerlandhomme/NShomme01.mp4" data-type="video"
+         data-title="Editorial Film" data-meta="Client Name<br>Director XYZ">
+        <video src="video/numeroswitzerlandhomme/NShomme01.mp4" muted playsinline autoplay loop></video>
+      </a>
+
+      <a class="masonry-item" href="img/project4/01.jpg" data-type="image"
+         data-title="Numéro Switzerland" data-meta="Photographer: John Doe">
+        <img src="thumbs/project4/01.jpg" alt="">
+      </a>
+
+      <a class="masonry-item" href="video/project5/main.mp4" data-type="video"
+         data-title="Runway Backstage" data-meta="Brand Name<br>Film Unit">
+        <video src="video/project5/teaser.mp4" muted playsinline autoplay loop></video>
+      </a>
+
+      <a class="masonry-item" href="img/project6/01.jpg" data-type="image"
+         data-title="Beauty Papers" data-meta="—">
+        <img src="thumbs/project6/01.jpg" alt="">
+      </a>
+
+      <a class="masonry-item" href="img/project7/01.jpg" data-type="image"
+         data-title="Givenchy Homme" data-meta="Campaign">
+        <img src="thumbs/project7/01.jpg" alt="">
+      </a>
+
+      <a class="masonry-item" href="video/project8/main.mp4" data-type="video"
+         data-title="Motion Teaser" data-meta="Client / Director">
+        <video src="video/project8/teaser.mp4" muted playsinline autoplay loop></video>
+      </a>
+
+      <a class="masonry-item" href="img/project9/01.jpg" data-type="image"
+         data-title="YSL Beauty" data-meta="—">
+        <img src="thumbs/project9/01.jpg" alt="">
+      </a>
+    </div>
+
+    <!-- Contacts -->
+    <div class="contacts">
+      <a href="https://instagram.com/natsukimua" target="_blank" rel="noopener">Instagram</a>
+      <a href="mailto:natsukimua@gmail.com">natsukimua@gmail.com</a>
+      <a href="mailto:maaike@blendmanagement.com">maaike@blendmanagement.com</a>
+    </div>
+
+    <!-- Bio -->
+    <div class="bio">
+     <p>
+      Natsuki Oneyama was born in Japan. Influenced by both fashion and art, he relocated to Paris, where he pursued a range of client-based projects before shifting his focus to studio makeup.
+      <br><br>
+      He was deeply inspired by the theatricality of 90s Martin Margiela and the experimental spirit of Japan’s 1960s–70s underground scene, which awakened in him a fascination with stage makeup and avant-garde art. After gaining experience as an assistant on major editorials and backstage at fashion shows, he eventually became independent.
+      <br><br>
+      Today, he continues to explore personal projects, seeking forms of expression beyond the conventional boundaries of editorial work. He has shaped a unique aesthetic language rooted in both Japanese and French sensibilities. His approach moves between restraint and emotion, structure and chance—where minimal gestures carry poetic weight. Rather than following trends, he draws inspiration from drawing, video, and digital media, using makeup to sketch moods and suggest alternate forms of identity.
+    </p>
+
+    <p>
+      Natsuki’s work has been published in BEAUTY PAPERS, REPLICA MAN, VOGUE Ukraine, VOGUE Mexico, VOGUE China, Numéro Switzerland, Numéro Switzerland Homme, 10, 10 Men, Dapper Dan, The Greatest Magazine, Lampoon, NOWNESS...
+      <br><br>
+      He has also collaborated with brands such as Givenchy Homme, Adidas, Delvaux, Clarins, CHANEL Beauty, GIVENCHY Beauty, YSL Beauty, SHISEIDO, Decléor, Swarovski, Arthus Bertrand, Piaget...
+    </p>
+  </div>
+
+      <footer class="footer-copyright">
+  &copy; 2025 All rights reserved.
+</footer>
+
+  <!-- Lightbox -->
+  <div id="lightbox" class="lightbox" aria-hidden="true">
+    <div class="lb-inner">
+      <!-- Header bar -->
+      <div class="lb-header">
+        <div class="lb-left">
+          <div class="lb-title"></div>
+          <div class="lb-meta"></div>
+        </div>
+        <div class="lb-right">
+          <div class="lb-actions">
+            <a id="lb-contact" href="mailto:maaike@blendmanagement.com">CONTACT AGENT</a>
+            <button id="lb-close" type="button">CLOSE</button>
+          </div>
+          <div class="lb-page"></div>
+        </div>
+      </div>
+
+      <!-- Stage & arrows -->
+      <div class="lb-stage"></div>
+      <button class="lb-prev" aria-label="Previous">‹</button>
+      <button class="lb-next" aria-label="Next">›</button>
+    </div>
+
+    <button class="lb-hotspot lb-hotspot-left"  aria-label="Previous"></button>
+<button class="lb-hotspot lb-hotspot-right" aria-label="Next"></button>
+
+  </div>
+
+  <script>
+    // ===== Config =====
+    const AGENT_EMAIL = "maaike@blendmanagement.com";
+
+    // ===== Collect items from DOM =====
+    const nodeList = Array.from(document.querySelectorAll('#overview .masonry-item'));
+    const items = nodeList.map(a => ({
+      type: a.dataset.type || 'image',
+      src:  a.getAttribute('href'),
+      title: a.dataset.title || '',
+      meta:  a.dataset.meta || ''
+    }));
+
+    // ===== Lightbox elements =====
+    const lb = document.getElementById('lightbox');
+    const stage = lb.querySelector('.lb-stage');
+    const btnPrev = lb.querySelector('.lb-prev');
+    const btnNext = lb.querySelector('.lb-next');
+    const btnClose = document.getElementById('lb-close');
+    const pageEl  = lb.querySelector('.lb-page');
+    const titleEl = lb.querySelector('.lb-title');
+    const metaEl  = lb.querySelector('.lb-meta');
+    const contactEl = document.getElementById('lb-contact');
+
+    const hotspotL = document.querySelector('.lb-hotspot-left');
+const hotspotR = document.querySelector('.lb-hotspot-right');
+
+hotspotL.addEventListener('click', (e) => { e.stopPropagation(); prev(); });
+hotspotR.addEventListener('click', (e) => { e.stopPropagation(); next(); });
+
+// すでにある「背景クリックで閉じる」判定はそのままでOK
+// （ホットスポット側で stopPropagation 済み）
+
+
+    contactEl.href = `mailto:${AGENT_EMAIL}`;
+
+    let index = 0;
+
+    function render(i) {
+      stage.innerHTML = '';
+      const it = items[i];
+
+      if (it.type === 'video') {
+        const v = document.createElement('video');
+        v.src = it.src;
+        v.controls = true;
+        v.autoplay = true;
+        v.className = 'lb-media';
+        stage.appendChild(v);
+      } else {
+        const img = document.createElement('img');
+        img.src = it.src;
+        img.alt = '';
+        img.className = 'lb-media';
+        stage.appendChild(img);
+      }
+
+      titleEl.innerHTML = it.title || '';
+      metaEl.innerHTML  = it.meta || '';
+      pageEl.textContent = String(i+1).padStart(2,'0') + '/' + String(items.length).padStart(2,'0');
+     
+        const isVideo = items[index].type === 'video';
+  hotspotL.style.pointerEvents = isVideo ? 'none' : 'auto';
+  hotspotR.style.pointerEvents = isVideo ? 'none' : 'auto';
+
+      resizeLbStage();    
+    }
+
+    function openAt(i) {
+      index = i;
+      render(index);
+      lb.classList.add('open');
+      lb.setAttribute('aria-hidden','false');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeLb() {
+      lb.classList.remove('open');
+      lb.setAttribute('aria-hidden','true');
+      stage.innerHTML = '';
+      document.body.style.overflow = '';
+    }
+    function next(){ index = (index+1) % items.length; render(index); }
+    function prev(){ index = (index-1+items.length) % items.length; render(index); }
+
+    // Click in overview -> open lightbox
+    document.getElementById('overview').addEventListener('click', (e) => {
+      const a = e.target.closest('.masonry-item');
+      if (!a) return;
+      e.preventDefault();
+      const i = nodeList.indexOf(a);
+      openAt(i >= 0 ? i : 0);
+    });
+
+    // Controls
+   btnNext.addEventListener('click', (e) => { 
+  e.stopPropagation(); 
+  next(); 
+});
+
+btnPrev.addEventListener('click', (e) => { 
+  e.stopPropagation(); 
+  prev(); 
+});
+    btnClose.addEventListener('click', closeLb);
+
+    // ===== Swipe navigation =====
+let touchStartX = 0;
+let touchEndX = 0;
+
+stage.addEventListener('touchstart', (e) => {
+  touchStartX = e.changedTouches[0].screenX;
+}, { passive: true });
+
+stage.addEventListener('touchend', (e) => {
+  touchEndX = e.changedTouches[0].screenX;
+  handleSwipe();
+}, { passive: true });
+
+function handleSwipe() {
+  const swipeThreshold = 50; // px以上の移動で判定
+  const deltaX = touchEndX - touchStartX;
+  if (Math.abs(deltaX) > swipeThreshold) {
+    if (deltaX > 0) {
+      prev(); // 右スワイプ → 前へ
+    } else {
+      next(); // 左スワイプ → 次へ
+    }
+  }
+}
+
+    // Close when clicking backdrop outside media
+    lb.addEventListener('click', (e) => {
+  const withinStage   = e.target.closest('.lb-stage');
+  const withinHeader  = e.target.closest('.lb-header');
+  const withinArrows  = e.target.closest('.lb-prev, .lb-next'); // ← 追加
+  if (!withinStage && !withinHeader && !withinArrows) {
+    closeLb();
+  }
+    });
+
+    // Keyboard
+    window.addEventListener('keydown', (e) => {
+      if (!lb.classList.contains('open')) return;
+      if (e.key === 'Escape') closeLb();
+      if (e.key === 'ArrowRight') next();
+      if (e.key === 'ArrowLeft')  prev();
+    });
+
+    function resizeLbStage() {
+  const headerHeight = lb.querySelector('.lb-header').offsetHeight;
+  const stageEl = lb.querySelector('.lb-stage');
+  stageEl.style.top = headerHeight + 'px';
+  stageEl.style.height = `calc(100vh - ${headerHeight}px)`;
+
+   lb.style.setProperty('--lb-stage-top', headerHeight + 'px');
+  lb.style.setProperty('--lb-stage-height', `calc(100vh - ${headerHeight}px)`);
+}
+
+// Lightboxを開くときも再計算
+function openAt(i) {
+  index = i;
+  render(index);
+  lb.classList.add('open');
+  lb.setAttribute('aria-hidden','false');
+  document.body.style.overflow = 'hidden';
+  resizeLbStage(); // ←追加
+}
+
+// ウィンドウサイズ変更でも再計算
+window.addEventListener('resize', () => {
+  if (lb.classList.contains('open')) {
+    resizeLbStage();
+  }
+});
+
+  </script>
+</body>
+</html>
